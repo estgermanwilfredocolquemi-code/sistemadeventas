@@ -1,0 +1,24 @@
+name: Proponer una mejora
+description: Registrar una necesidad y su resultado esperado
+title: "[Mejora]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Necesidad
+      description: ¿Qué problema de usuario debe resolverse?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Resultado propuesto
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios verificables
+    validations:
+      required: true

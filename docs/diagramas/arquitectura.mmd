@@ -1,0 +1,7 @@
+flowchart LR
+    Actor[Administrador / vendedor / cliente] --> Consola[Menús de consola]
+    Consola --> Reglas[Operaciones en Program.cs]
+    Reglas --> Catalogo[Productos en memoria]
+    Reglas --> Contactos[Clientes y usuarios en memoria]
+    Reglas --> Ventas[Cantidad y total de sesión]
+    Fin[Fin del programa] -. reinicia estado .-> Catalogo

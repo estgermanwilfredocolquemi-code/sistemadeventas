@@ -1,0 +1,31 @@
+# Compilación .NET
+**/bin/
+**/obj/
+artifacts/
+
+# Visual Studio y editores
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.cache
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Configuración local y secretos
+.env
+.env.*
+!.env.example
+secrets.json
+appsettings.*.local.json
+*.pfx
+*.p12
+
+# Temporales
+*.tmp
+*.log
+~$*

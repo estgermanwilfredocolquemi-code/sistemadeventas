@@ -1,0 +1,24 @@
+name: Compilación .NET
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v6
+      - name: Preparar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restaurar
+        run: dotnet restore NexCodeSales.slnx
+      - name: Compilar
+        run: dotnet build NexCodeSales.slnx --configuration Release --no-restore

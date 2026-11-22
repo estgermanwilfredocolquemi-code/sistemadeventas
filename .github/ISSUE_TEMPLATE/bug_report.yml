@@ -1,0 +1,29 @@
+name: Reportar un defecto
+description: Registrar un comportamiento incorrecto del programa
+title: "[Defecto]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumen
+      description: ¿Qué pasó y qué esperabas?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: "1. ..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Entorno
+      description: Sistema operativo y versión de .NET
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidencia
+      description: Añade mensajes sin secretos ni datos reales
