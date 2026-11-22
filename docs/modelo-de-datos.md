@@ -53,3 +53,30 @@ El RAR recibido solo contiene ese SQL. Aunque el documento del Hito menciona un 
 ## Normalización declarada
 
 El documento del Hito declara que las 17 tablas cumplen 1FN, 2FN y 3FN. Entre las decisiones registradas están separar nombres y apellidos, resolver relaciones N:M con tablas asociativas, quitar el stock duplicado y calcular subtotales en consultas. Esta descripción resume lo declarado por el equipo; la verificación definitiva depende de recibir el DDL final y contrastar sus columnas y restricciones.
+
+## Columnas declaradas por el modelo lógico final
+
+La siguiente relación de nombres se transcribe del apartado tabla por tabla del documento del Hito. `PK`, `FK` y `UQ` indican las claves y unicidad que allí se declaran; no se agregan tipos SQL porque el archivo físico correspondiente no estaba dentro del RAR.
+
+| Tabla | Columnas declaradas |
+| --- | --- |
+| `roles` | `id_rol` (PK), `nombre_rol` (UQ), `descripcion` |
+| `proveedores` | `id_proveedor` (PK), `nombre_proveedor` (UQ), `telefono`, `correo` (UQ), `direccion` |
+| `categorias` | `id_categoria` (PK), `nombre_categoria` (UQ), `descripcion` |
+| `descuentos` | `id_descuento` (PK), `nombre_descuento` (UQ), `porcentaje`, `fecha_inicio`, `fecha_fin` |
+| `usuarios` | `id_usuario` (PK), `nombres`, `apellidos`, `correo` (UQ), `nombre_usuario` (UQ), `contrasena_hash`, `id_rol` (FK) |
+| `vendedores` | `id_vendedor` (PK), `id_usuario` (FK, UQ) |
+| `clientes` | `id_cliente` (PK), `id_usuario` (FK, UQ) |
+| `productos` | `id_producto` (PK), `nombre_producto` (UQ), `descripcion`, `precio_venta`, `id_categoria` (FK), `id_descuento` (FK opcional) |
+| `inventarios` | `id_inventario` (PK), `id_producto` (FK, UQ), `stock_actual`, `stock_minimo`, `fecha_actualizacion` |
+| `promociones` | `id_promocion` (PK), `nombre_promocion` (UQ), `descripcion`, `porcentaje_descuento`, `fecha_inicio`, `fecha_fin` |
+| `preventas` | `id_preventa` (PK), `id_cliente` (FK), `id_vendedor` (FK), `fecha_preventa`, `estado` |
+| `ventas` | `id_venta` (PK), `id_cliente` (FK), `id_vendedor` (FK), `fecha_venta`, `total`, `metodo_pago` |
+| `detalles_ventas` | `id_detalle_venta` (PK), `id_venta` (FK), `id_producto` (FK), `cantidad`, `precio_unitario` |
+| `proveedores_productos` | `id_proveedor` (PK, FK), `id_producto` (PK, FK), `precio_compra` |
+| `ventas_promociones` | `id_venta` (PK, FK), `id_promocion` (PK, FK) |
+| `preventas_productos` | `id_preventa` (PK, FK), `id_producto` (PK, FK), `cantidad`, `precio_unitario` |
+| `reportes_semanales` | `id_reporte_semanal` (PK), `fecha_inicio` (UQ), `fecha_fin`, `total_ventas`, `cantidad_ventas`, `fecha_generacion` |
+
+El documento también declara 75 columnas en total, 17 claves primarias y 18 claves foráneas. Estos totales sirven como comprobación documental; deben contrastarse con el DDL final cuando se reciba.
+
